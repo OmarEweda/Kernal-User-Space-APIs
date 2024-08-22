@@ -71,6 +71,12 @@
     "span": "c",
     "utility": "c",
     "fs.h": "c",
-    "mutex.h": "c"
+    "mutex.h": "c",
+    "compare": "c",
+    "functional": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "istream": "c",
+    "ostream": "c"
   }
 }

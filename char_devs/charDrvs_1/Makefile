@@ -1,9 +1,9 @@
 PWD := $(shell pwd)
 KERNEL := /lib/modules/$(shell uname -r)/build
 
-obj-m += dummyModule.o
+obj-m += charDrvs.o
 
-dummyModule.o := dummyModule.c dummyModule.h
+charDrvs.o := charDrvs.c charDrvs.h
 
 all:
 	make -C $(KERNEL) M=$(PWD) modules

@@ -14,6 +14,7 @@ static int dummy_release_fifo(struct inode *inode, struct file *filp)
 
 static ssize_t dummy_read_fifo(struct file *file, char __user *buf, size_t count, loff_t *ppos)
 {
+    int ret;
     unsigned int copiedout;
 
     if (mutex_lock_interruptible(&read_mutex)) {
@@ -21,7 +22,7 @@ static ssize_t dummy_read_fifo(struct file *file, char __user *buf, size_t count
         return -ERESTARTSYS;
     }
 
-    copiedout = kfifo_to_user(&my_fifo, buf, count, &copiedout);
+    ret = kfifo_to_user(&my_fifo, buf, count, &copiedout);
 
     mutex_unlock(&read_mutex);
 
@@ -30,6 +31,7 @@ static ssize_t dummy_read_fifo(struct file *file, char __user *buf, size_t count
 
 static ssize_t dummy_write_fifo(struct file *file, const char __user *buf, size_t count, loff_t *ppos)
 {
+    int ret;
     unsigned int copiedin;
     
     if (mutex_lock_interruptible(&write_mutex)) {
@@ -39,7 +41,7 @@ static ssize_t dummy_write_fifo(struct file *file, const char __user *buf, size_
 
     pr_info("FIFO available space: %d\n", kfifo_avail(&my_fifo));
 
-    copiedin = kfifo_from_user(&my_fifo, buf, count, &copiedin);
+    ret = kfifo_from_user(&my_fifo, buf, count, &copiedin);
     mutex_unlock(&write_mutex);
     pr_info("Data copied to FIFO: %u bytes\n", copiedin);
 

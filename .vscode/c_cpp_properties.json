@@ -8,7 +8,9 @@
         "/usr/include/linux",
         "/usr/src/linux-headers-6.8.0-40-generic/include",
         "/usr/src/linux-headers-6.8.0-40-generic/arch/x86/include",
+        "/usr/src/linux-headers-6.8.0-40-generic/arch/x86/include/uapi",
         "/usr/src/linux-headers-6.8.0-40-generic/arch/x86/include/generated",
+        "/usr/src/linux-headers-6.8.0-40-generic/arch/x86/include/generated/uapi",
         "/lib/modules/6.8.0-40-generic/build/include"
       ],
       "compilerPath": "/usr/bin/gcc",
@@ -17,6 +19,11 @@
       "intelliSenseMode": "linux-gcc-x64",
       "compilerArgs": [
         ""
+      ],
+      "defines": [
+        "__GNU__",
+        "__KERNEL__",
+        "MODULE"
       ]
     }
   ],
